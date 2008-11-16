@@ -25,6 +25,7 @@ class StoriesController < ApplicationController
   # GET /stories/new.xml
   def new
     @story = Story.new
+    @users = User.find(:all)
 
     respond_to do |format|
       format.html # new.html.erb
