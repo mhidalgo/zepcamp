@@ -1,0 +1,33 @@
+<p>
+  <b>Title:</b>
+  <%=h @story.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @story.description %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%=h @story.status %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%=h @story.user_id %>
+</p>
+
+<p>
+  <b>Sprint:</b>
+  <%=h @story.sprint_id %>
+</p>
+
+<p>
+  <b>Weight:</b>
+  <%=h @story.weight %>
+</p>
+
+
+<%= link_to 'Edit', edit_story_path(@story) %> |
+<%= link_to 'Back', stories_path %>

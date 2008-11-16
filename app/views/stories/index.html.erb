@@ -1,0 +1,30 @@
+<h1>Listing stories</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Status</th>
+    <th>User</th>
+    <th>Sprint</th>
+    <th>Weight</th>
+  </tr>
+
+<% for story in @stories %>
+  <tr>
+    <td><%=h story.title %></td>
+    <td><%=h story.description %></td>
+    <td><%=h story.status %></td>
+    <td><%=h story.user_id %></td>
+    <td><%=h story.sprint_id %></td>
+    <td><%=h story.weight %></td>
+    <td><%= link_to 'Show', story %></td>
+    <td><%= link_to 'Edit', edit_story_path(story) %></td>
+    <td><%= link_to 'Destroy', story, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New story', new_story_path %>
