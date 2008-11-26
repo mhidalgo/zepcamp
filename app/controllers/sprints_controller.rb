@@ -14,7 +14,7 @@ class SprintsController < ApplicationController
   # GET /sprints/1.xml
   def show
     @sprint = Sprint.find(params[:id])
-
+    
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @sprint }
@@ -25,6 +25,7 @@ class SprintsController < ApplicationController
   # GET /sprints/new.xml
   def new
     @sprint = Sprint.new
+    @stories = Story.find(:all)
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,12 +36,15 @@ class SprintsController < ApplicationController
   # GET /sprints/1/edit
   def edit
     @sprint = Sprint.find(params[:id])
+    @stories = Story.find(:all)
+    
   end
 
   # POST /sprints
   # POST /sprints.xml
   def create
     @sprint = Sprint.new(params[:sprint])
+    @stories = Story.find(params[:stories]) if params[:stories]
 
     respond_to do |format|
       if @sprint.save
@@ -48,6 +52,7 @@ class SprintsController < ApplicationController
         format.html { redirect_to(@sprint) }
         format.xml  { render :xml => @sprint, :status => :created, :location => @sprint }
       else
+        @stories = Story.find(:all)
         format.html { render :action => "new" }
         format.xml  { render :xml => @sprint.errors, :status => :unprocessable_entity }
       end
@@ -58,6 +63,8 @@ class SprintsController < ApplicationController
   # PUT /sprints/1.xml
   def update
     @sprint = Sprint.find(params[:id])
+    @stories = Story.find(params[:stories]) if params[:stories]
+    
 
     respond_to do |format|
       if @sprint.update_attributes(params[:sprint])

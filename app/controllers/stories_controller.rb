@@ -25,8 +25,10 @@ class StoriesController < ApplicationController
   # GET /stories/new.xml
   def new
     @story = Story.new
-    @users = User.find(:all)
-
+    @sprints = Sprint.find(:all, :order => "created_on")
+    @selected = [] 
+     
+     
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @story }
